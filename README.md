@@ -28,3 +28,20 @@ jar --create --file=target/helpful-npe.jar --main-class=com.albi.helpful.npe.App
 java -XX:+ShowCodeDetailsInExceptionMessages -jar target/helpful-npe.jar
 ```
 
+## Comparison
+
+Before
+
+```java
+Exception in thread "main" java.lang.NullPointerException
+	at com.albi.helpful.npe.App.printCharFromStringAt(App.java:16)
+	at com.albi.helpful.npe.App.main(App.java:12)
+```
+
+After
+
+```java
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.charAt(int)" because "<parameter1>" is null
+	at com.albi.helpful.npe.App.printCharFromStringAt(App.java:16)
+	at com.albi.helpful.npe.App.main(App.java:12)
+```
