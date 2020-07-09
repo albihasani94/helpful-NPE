@@ -41,7 +41,7 @@ Exception in thread "main" java.lang.NullPointerException
 After
 
 ```java
-Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.charAt(int)" because "<parameter1>" is null
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.charAt(int)" because "text" is null
 	at com.albi.helpful.npe.App.printCharFromStringAt(App.java:16)
 	at com.albi.helpful.npe.App.main(App.java:12)
 ```
