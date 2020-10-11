@@ -1,7 +1,6 @@
 package com.albi.helpful.npe;
 
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class App {
     public static void main(String[] args) {
@@ -11,13 +10,23 @@ public class App {
         printLength.accept(notANullReference);
         printLength.accept(aNullReference); // boom
 
-        String anotherNotNullReference = "hello nulls";
+        var firstPerson = new Person("Albi", 26);
+        var secondPerson = new Person(null, 100);
 
-        Stream.of(notANullReference, aNullReference, anotherNotNullReference)
-                .forEach(printLength); // kaboom
+        printNameLength.accept(firstPerson);
+        printNameLength.accept(secondPerson);
+
+        Person thirdPerson = null;
+
+        printNameLength.accept(thirdPerson);
     }
-
     private static Consumer<String> printLength = input ->
             System.out.printf("Length of string %s is %d%n", input, input.length());
+
+    private static Consumer<Person> printNameLength = person ->
+            System.out.printf("Length of name for person %s is %s", person.name, person.name.length());
+
+    record Person(String name, int age) {
+    }
 
 }
