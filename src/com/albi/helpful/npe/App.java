@@ -1,18 +1,23 @@
 package com.albi.helpful.npe;
 
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
 public class App {
     public static void main(String[] args) {
-        String test = "test string";
+        String notANullReference = "hi there";
+        String aNullReference = null;
 
-        printCharFromStringAt(test, 3);
-        printCharFromStringAt(test, 1);
+        printLength.accept(notANullReference);
+        printLength.accept(aNullReference); // boom
 
-        test = null;
+        String anotherNotNullReference = "hello nulls";
 
-        printCharFromStringAt(test, 0);
+        Stream.of(notANullReference, aNullReference, anotherNotNullReference)
+                .forEach(printLength); // kaboom
     }
 
-    public static void printCharFromStringAt(String text, int index) {
-        System.out.println(text.charAt(index));
-    }
+    private static Consumer<String> printLength = input ->
+            System.out.printf("Length of string %s is %d%n", input, input.length());
+
 }
